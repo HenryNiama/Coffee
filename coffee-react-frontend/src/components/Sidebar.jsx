@@ -1,8 +1,12 @@
 import React from 'react';
-import {categories} from "../data/categories.js";
+import useCoffee from "../hooks/useCoffee.js";
 import Category from "./Category.jsx";
 
+
 function Sidebar() {
+
+    const {categories} = useCoffee();
+
     return (
         <aside className={"md:w-72"}>
             <div className={"p-4"}>
