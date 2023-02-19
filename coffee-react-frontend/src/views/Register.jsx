@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Register() {
     return (
@@ -6,7 +7,7 @@ function Register() {
             <h1 className="text-4xl font-black">Create your Account</h1>
             <p className="text-lg text-gray-600"> Fill the form.</p>
 
-            <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
+            <div className="bg-white shadow-md rounded-md mt-6 px-5 py-6">
                 <form action="">
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name: </label>
@@ -34,6 +35,10 @@ function Register() {
                     </div>
                     <input type="submit" value="Create Account" className={"bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900 cursor-pointer"} />
                 </form>
+            </div>
+
+            <div className="flex justify-center mt-5">
+                <Link to="/auth/login" className="text-gray-700 hover:text-gray-900">Already have an account?</Link>
             </div>
         </>
 
