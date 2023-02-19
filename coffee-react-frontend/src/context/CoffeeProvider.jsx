@@ -8,9 +8,12 @@ const CoffeeContext = createContext();
 const CoffeeProvider = ({children}) => {
 
     const [categories, setCategories] = useState(categoriesDB);
-    const [currentCategory, setCurrentCategory] = useState(categories[0]);
-    const handleClickCategory = (category) => {
+    let [currentCategory, setCurrentCategory] = useState(categories[0]);
 
+    const handleClickCategory = (id) => {
+        const category = categories.filter(category => category.id === id)[0];
+        setCurrentCategory(category);
+        console.log(category);
     };
 
     return (
