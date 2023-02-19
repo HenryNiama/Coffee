@@ -4,7 +4,7 @@ function Register() {
     return (
         <>
             <h1 className="text-4xl font-black">Create your Account</h1>
-            <p>Fill the form</p>
+            <p className="text-lg text-gray-600"> Fill the form.</p>
 
             <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
                 <form action="">
@@ -33,8 +33,6 @@ function Register() {
                         />
                     </div>
                     <input type="submit" value="Create Account" className={"bg-gray-800 w-full mt-5 p-2 text-white uppercase hover:bg-gray-900 cursor-pointer"} />
-
-
                 </form>
             </div>
         </>
