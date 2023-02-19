@@ -1,9 +1,11 @@
 import React from 'react';
 import {products} from "../data/products";
 import Product from "../components/Product.jsx";
+import useCoffee from "../hooks/useCoffee.js";
 
 function Inicio() {
 
+    const {autenticado} = useCoffee();
 
     return (
         <>
