@@ -1,5 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom'
-import Layout from './layouts/layout'
+import Layout from './layouts/Layout.jsx'
 import AuthLayout from './layouts/AuthLayout'
 import Inicio from "./views/Inicio.jsx";
 import Login from "./views/Login.jsx";
