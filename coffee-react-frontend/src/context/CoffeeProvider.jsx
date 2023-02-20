@@ -1,5 +1,5 @@
 import React from 'react';
-import {createContext, useState} from 'react';
+import {createContext, useState, useEffect} from 'react';
 import {categories as categoriesDB} from "../data/categories.js";
 import {toast} from "react-toastify";
 
@@ -8,7 +8,7 @@ const CoffeeContext = createContext();
 
 const CoffeeProvider = ({children}) => {
 
-    const [categories, setCategories] = useState(categoriesDB);
+    const [categories] = useState(categoriesDB);
     let [currentCategory, setCurrentCategory] = useState(categories[0]);
 
     const handleClickCategory = (id) => {
@@ -53,7 +53,12 @@ const CoffeeProvider = ({children}) => {
         toast.success('Product deleted from cart');
     }
 
+    const [total, setTotal] = useState(0);
 
+    useEffect(() => {
+        const newTotal = order.reduce((acc, product) => acc + product.precio * product.quantity, 0);
+        setTotal(newTotal);
+    }, [order]);
 
 
     return (
@@ -69,7 +74,8 @@ const CoffeeProvider = ({children}) => {
                 order,
                 handleAddOrder,
                 handleEditQuantity,
-                handleDeleteProduct
+                handleDeleteProduct,
+                total
             }}>
             {children}
         </CoffeeContext.Provider>

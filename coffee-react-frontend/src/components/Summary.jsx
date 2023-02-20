@@ -1,10 +1,11 @@
 import React from 'react';
 import useCoffee from "../hooks/useCoffee.js";
 import SummaryProduct from "./SummaryProduct.jsx";
+import {formatMoney} from "../helpers";
 
 function Summary() {
 
-    const {order} = useCoffee();
+    const {order, total} = useCoffee();
 
     return (
         <aside className="w-72 h-screen  overflow-y-scroll p-5">
@@ -22,7 +23,7 @@ function Summary() {
 
             <div className={"flex justify-between"}>
                 <p className={"text-lg font-bold"}>Total</p>
-                <p className={"text-lg font-bold"}>$ 0</p>
+                <p className={"text-lg font-bold"}>{formatMoney(total)}</p>
             </div>
 
             {/*<form action="">*/}
