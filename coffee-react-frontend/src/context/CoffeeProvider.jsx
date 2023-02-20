@@ -29,6 +29,11 @@ const CoffeeProvider = ({children}) => {
 
     const[order, setOrder] = useState([]);
 
+    const handleAddOrder = ({categoria_id, imagen, ...product}) => {
+        console.log(product);
+        setOrder([...order, product]);
+    }
+
     return (
         <CoffeeContext.Provider
             value={{
@@ -39,7 +44,8 @@ const CoffeeProvider = ({children}) => {
                 handleClickModal,
                 product,
                 handleSetProduct,
-                order
+                order,
+                handleAddOrder
             }}>
             {children}
         </CoffeeContext.Provider>
