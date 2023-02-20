@@ -30,8 +30,12 @@ const CoffeeProvider = ({children}) => {
     const[order, setOrder] = useState([]);
 
     const handleAddOrder = ({categoria_id, imagen, ...product}) => {
-        console.log(product);
-        setOrder([...order, product]);
+        if(order.some(order => order.id === product.id)){
+            const productUpdated = order.map(orderState => orderState.id === product.id ? product : orderState);
+            setOrder(productUpdated);
+        }else{
+            setOrder([...order, product]);
+        }
     }
 
     return (
