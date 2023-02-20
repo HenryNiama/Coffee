@@ -30,7 +30,7 @@ const CoffeeProvider = ({children}) => {
 
     const[order, setOrder] = useState([]);
 
-    const handleAddOrder = ({categoria_id, imagen, ...product}) => {
+    const handleAddOrder = ({categoria_id, ...product}) => {
         if(order.some(order => order.id === product.id)){
             const productUpdated = order.map(orderState => orderState.id === product.id ? product : orderState);
             setOrder(productUpdated);
@@ -39,6 +39,12 @@ const CoffeeProvider = ({children}) => {
             setOrder([...order, product]);
             toast.success('Product added to cart');
         }
+    }
+
+    const handleEditQuantity = (id) => {
+        const productUpdated = order.filter(product => product.id === id)[0];
+        setProduct(productUpdated);
+        setModal(!modal);
     }
 
     return (
@@ -52,7 +58,8 @@ const CoffeeProvider = ({children}) => {
                 product,
                 handleSetProduct,
                 order,
-                handleAddOrder
+                handleAddOrder,
+                handleEditQuantity
             }}>
             {children}
         </CoffeeContext.Provider>

@@ -1,9 +1,11 @@
 import React from 'react';
 import {formatMoney} from "../helpers";
+import useCoffee from "../hooks/useCoffee.js";
 
 function SummaryProduct({product}) {
 
     const {id, nombre, precio, quantity} = product;
+    const { handleEditQuantity } = useCoffee();
 
     return (
         <div className="shadow space-y-1 p-4 bg-white">
@@ -22,6 +24,7 @@ function SummaryProduct({product}) {
                 <button
                     type="button"
                     className="bg-sky-700 p-2 text-white rounded-md font-bold uppercase shadow-md text-center"
+                    onClick={() => handleEditQuantity(id)}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
