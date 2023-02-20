@@ -1,6 +1,7 @@
 import React from 'react';
 import {createContext, useState} from 'react';
 import {categories as categoriesDB} from "../data/categories.js";
+import {toast} from "react-toastify";
 
 
 const CoffeeContext = createContext();
@@ -33,8 +34,10 @@ const CoffeeProvider = ({children}) => {
         if(order.some(order => order.id === product.id)){
             const productUpdated = order.map(orderState => orderState.id === product.id ? product : orderState);
             setOrder(productUpdated);
+            toast.success('Product updated');
         }else{
             setOrder([...order, product]);
+            toast.success('Product added to cart');
         }
     }
 

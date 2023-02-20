@@ -5,6 +5,8 @@ import Summary from "../components/Summary.jsx";
 import useCoffee from "../hooks/useCoffee.js";
 import Modal from "react-modal";
 import ModalProduct from "../components/ModalProduct.jsx";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const customStyles = {
     content: {
@@ -40,6 +42,9 @@ export default function layout() {
           >
               <ModalProduct />
           </Modal>
+
+          <ToastContainer />
+
       </>
   )
 }
