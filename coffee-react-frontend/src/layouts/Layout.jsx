@@ -21,7 +21,7 @@ Modal.setAppElement("#root");
 
 export default function layout() {
 
-    const {modal, handleClickModal} = useCoffee();
+    const {modal} = useCoffee();
 
   return (
       <>
@@ -38,7 +38,6 @@ export default function layout() {
               style={customStyles}
               contentLabel="Example Modal"
           >
-              <button onClick={handleClickModal}>Close</button>
               <ModalProduct />
           </Modal>
       </>
