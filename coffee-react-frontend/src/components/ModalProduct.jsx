@@ -1,5 +1,7 @@
 import React from 'react';
 import useCoffee from "../hooks/useCoffee.js";
+import {formatMoney} from "../helpers/index.js";
+
 
 function ModalProduct() {
 
@@ -18,6 +20,11 @@ function ModalProduct() {
                         </svg>
                     </button>
                 </div>
+                <h1 className={"text-3xl font-bold"}>{product.nombre}</h1>
+                <p className={"text-5xl font-black text-amber-500 mt-5"}>{formatMoney(product.precio)}</p>
+                <button type="button" className={"bg-amber-600 hover:bg-amber-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"}>
+                    Add to order
+                </button>
             </div>
         </div>
     );
