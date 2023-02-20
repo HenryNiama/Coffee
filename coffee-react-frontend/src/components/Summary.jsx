@@ -1,6 +1,6 @@
 import React from 'react';
 import useCoffee from "../hooks/useCoffee.js";
-
+import SummaryProduct from "./SummaryProduct.jsx";
 
 function Summary() {
 
@@ -15,10 +15,7 @@ function Summary() {
                     <p className={"text-lg text-center"}>No hay productos en el carrito</p>
                 ) : (
                     order.map((product) => (
-                        <div key={product.id} className={"flex justify-between"}>
-                            <p>{product.nombre}</p>
-                            <p>{product.precio}</p>
-                        </div>
+                        <SummaryProduct key={product.id} product={product} />
                     ))
                 )}
             </div>
