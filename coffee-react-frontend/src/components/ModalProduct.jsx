@@ -1,13 +1,23 @@
 import React from 'react';
 import useCoffee from "../hooks/useCoffee.js";
 import {formatMoney} from "../helpers/index.js";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 
 function ModalProduct() {
 
-    const {product, handleClickModal, handleAddOrder} = useCoffee();
+    const {product, handleClickModal, handleAddOrder, order} = useCoffee();
     const [quantity, setQuantity] = useState(1);
+    const [edit, setEdit] = useState(false);
+
+    useEffect(() => {
+        if(order.some(order => order.id === product.id)){
+            const productExist = order.filter(order => order.id === product.id)[0];
+            setQuantity(productExist.quantity);
+            // console.log(productExist);
+            setEdit(true);
+        }
+    }, [order]);
 
     return (
         <div className={"md:flex  gap-10"}>
@@ -45,7 +55,7 @@ function ModalProduct() {
 
 
                 <button type="button" className={"bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded "} onClick={() => {handleAddOrder({...product, quantity}); handleClickModal(); }   }>
-                    Add to order
+                    {edit ? "Edit Order" : "Add to Order"}
                 </button>
             </div>
         </div>
