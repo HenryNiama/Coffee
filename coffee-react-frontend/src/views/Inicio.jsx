@@ -1,11 +1,13 @@
 import React from 'react';
-import {products} from "../data/products";
+import {products as data} from "../data/products";
 import Product from "../components/Product.jsx";
 import useCoffee from "../hooks/useCoffee.js";
 
 function Inicio() {
 
     const {currentCategory} = useCoffee();
+    const productos = data.filter(product => product.categoria_id === currentCategory.id);
+
 
     return (
         <>
@@ -16,7 +18,7 @@ function Inicio() {
 
 
             <div className={"grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10"}>
-                {products.map((product) => (
+                {productos.map((product) => (
                     <Product key={product.id} product={product} />
                 ))}
             </div>
