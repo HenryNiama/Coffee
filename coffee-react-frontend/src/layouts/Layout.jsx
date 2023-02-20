@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar.jsx";
 import Summary from "../components/Summary.jsx";
 import useCoffee from "../hooks/useCoffee.js";
 import Modal from "react-modal";
+import ModalProduct from "../components/ModalProduct.jsx";
 
 const customStyles = {
     content: {
@@ -15,6 +16,8 @@ const customStyles = {
         transform: "translate(-50%, -50%)",
     },
 };
+
+Modal.setAppElement("#root");
 
 export default function layout() {
 
@@ -30,17 +33,14 @@ export default function layout() {
           <Summary />
       </div>
 
-          {modal && (
-                <Modal
-                    isOpen={modal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <h2>Modal</h2>
-                    <button onClick={handleClickModal}>Close</button>
-                    <div>I am a modal</div>
-                </Modal>
-            )}
+          <Modal
+              isOpen={modal}
+              style={customStyles}
+              contentLabel="Example Modal"
+          >
+              <button onClick={handleClickModal}>Close</button>
+              <ModalProduct />
+          </Modal>
       </>
   )
 }
