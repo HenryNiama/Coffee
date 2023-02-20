@@ -27,6 +27,8 @@ const CoffeeProvider = ({children}) => {
 
     const handleSetProduct = product => {setProduct(product)};
 
+    const[order, setOrder] = useState([]);
+
     return (
         <CoffeeContext.Provider
             value={{
@@ -36,7 +38,8 @@ const CoffeeProvider = ({children}) => {
                 modal,
                 handleClickModal,
                 product,
-                handleSetProduct
+                handleSetProduct,
+                order
             }}>
             {children}
         </CoffeeContext.Provider>
