@@ -9,7 +9,7 @@ function Sidebar() {
 
     return (
         <aside className={"md:w-72"}>
-            <div className={"p-4"}>
+            <div className={"p-4 flex items-center justify-center"}>
                 <img src="../../public/img/logo.svg" alt="Image Logo" className={"w-40"}/>
             </div>
             <div className={"mt-10"}>
@@ -20,10 +20,12 @@ function Sidebar() {
                     />
                 )) }
             </div>
-            <div className={"my-5 px-5"}>
-                <button type={"button"} className={"text-center bg-red-500 w-full p-3 font-bold text-white hover:bg-red-700"}>
-                    Cancel Order
-                </button>
+
+            <div className={"mt-10 px-5"}>
+                {/*<button type={"button"} className={"text-center bg-red-500 w-full p-3 font-bold text-white hover:bg-red-700"}>*/}
+                {/*    Cancel Order*/}
+                {/*</button>*/}
+                <p className={"text-center"}>Developed by <span className={"font-bold"}>Henry Niama </span> <br/> {new Date().getFullYear() }</p>
             </div>
         </aside>
     );
