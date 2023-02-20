@@ -16,12 +16,21 @@ const CoffeeProvider = ({children}) => {
         console.log(category);
     };
 
+    const [modal, setModal] = useState(false);
+
+    const handleClickModal = () => {
+        setModal(!modal);
+        console.log(modal);
+    }
+
     return (
         <CoffeeContext.Provider
             value={{
                 categories,
                 currentCategory,
-                handleClickCategory
+                handleClickCategory,
+                modal,
+                handleClickModal
             }}>
             {children}
         </CoffeeContext.Provider>
