@@ -47,6 +47,15 @@ const CoffeeProvider = ({children}) => {
         setModal(!modal);
     }
 
+    const handleDeleteProduct = (id) => {
+        const productUpdated = order.filter(product => product.id !== id);
+        setOrder(productUpdated);
+        toast.success('Product deleted from cart');
+    }
+
+
+
+
     return (
         <CoffeeContext.Provider
             value={{
@@ -59,7 +68,8 @@ const CoffeeProvider = ({children}) => {
                 handleSetProduct,
                 order,
                 handleAddOrder,
-                handleEditQuantity
+                handleEditQuantity,
+                handleDeleteProduct
             }}>
             {children}
         </CoffeeContext.Provider>
