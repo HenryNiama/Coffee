@@ -12,7 +12,7 @@ function Inicio() {
     return (
         <>
             <div className={"fixed top-0 bg-white w-3/5 px-1"}>
-                <h1 className={"text-4xl font-black text-center"}>{currentCategory.nombre}</h1>
+                <h1 className={"text-4xl font-black text-center"}>{currentCategory.name}</h1>
                 <p className={"text-2xl my-5 text-center"}>Choose and customize your order.</p>
             </div>
 

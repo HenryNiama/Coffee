@@ -1,15 +1,15 @@
 import React from 'react';
 import {createContext, useState, useEffect} from 'react';
-import {categories as categoriesDB} from "../data/categories.js";
+// import {categories as categoriesDB} from "../data/categories.js";
 import {toast} from "react-toastify";
-
+import axios from "axios";
 
 const CoffeeContext = createContext();
 
 const CoffeeProvider = ({children}) => {
 
-    const [categories] = useState(categoriesDB);
-    let [currentCategory, setCurrentCategory] = useState(categories[0]);
+    const [categories, setCategories] = useState([]);
+    let [currentCategory, setCurrentCategory] = useState({});
 
     const handleClickCategory = (id) => {
         const category = categories.filter(category => category.id === id)[0];
@@ -60,6 +60,20 @@ const CoffeeProvider = ({children}) => {
         setTotal(newTotal);
     }, [order]);
 
+    const getCategories = async () =>{
+        try {
+            const {data} = await axios.get('http://localhost/api/categories');
+            setCategories(data.data);
+            setCurrentCategory(data.data[0]);
+            // console.log(data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getCategories().then(r => console.log(r));
+    }, []);
 
     return (
         <CoffeeContext.Provider
