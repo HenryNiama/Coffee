@@ -2,7 +2,7 @@ import React from 'react';
 import {createContext, useState, useEffect} from 'react';
 // import {categories as categoriesDB} from "../data/categories.js";
 import {toast} from "react-toastify";
-import axios from "axios";
+import clientAxios from "../config/axios.js";
 
 const CoffeeContext = createContext();
 
@@ -62,7 +62,8 @@ const CoffeeProvider = ({children}) => {
 
     const getCategories = async () =>{
         try {
-            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/api/categories`);
+            // const {data} = await axios.get(`${}/api/categories`);
+            const {data} = await clientAxios.get('/api/categories');
             setCategories(data.data);
             setCurrentCategory(data.data[0]);
             // console.log(data.data);
