@@ -1,12 +1,23 @@
 import React from 'react';
-import {products as data} from "../data/products";
+// import {products as data} from "../data/products";
 import Product from "../components/Product.jsx";
 import useCoffee from "../hooks/useCoffee.js";
+import useSWR from "swr";
+import clientAxios from "../config/axios.js";
 
 function Inicio() {
 
     const {currentCategory} = useCoffee();
-    const productos = data.filter(product => product.categoria_id === currentCategory.id);
+
+    // Consulta SWR
+    const fetcher = () => clientAxios('/api/products').then(data => data.data);
+    const { data, error, isLoading } = useSWR('/api/products', fetcher, {
+        refreshInterval: 1000
+    });
+
+    if (isLoading) return <p>Loading...</p>;
+
+    const productos = data.data.filter(product => product.category_id === currentCategory.id);
 
 
     return (

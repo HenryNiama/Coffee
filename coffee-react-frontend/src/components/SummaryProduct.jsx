@@ -4,19 +4,19 @@ import useCoffee from "../hooks/useCoffee.js";
 
 function SummaryProduct({product}) {
 
-    const {id, nombre, precio, quantity} = product;
+    const {id, name, price, quantity} = product;
     const { handleEditQuantity, handleDeleteProduct } = useCoffee();
 
     return (
         <div className="shadow space-y-1 p-4 bg-white">
             <div className="space-y-2">
-                <p className="text-xl font-bold">{nombre}</p>
+                <p className="text-xl font-bold">{name}</p>
                 <p className="text-lg font-bold ">Cantidad: <span className={"font-black"}>  {quantity}</span>  </p>
                 <p className="text-lg font-bold text-amber-500">
-                    Precio: <span className={"font-black"}>  {formatMoney(precio)} </span>
+                    Precio: <span className={"font-black"}>  {formatMoney(price)} </span>
                 </p>
                 <p className="text-lg text-gray-700">
-                    Subtotal: <span className={"font-black"}>  {formatMoney(precio * quantity)} </span>
+                    Subtotal: <span className={"font-black"}>  {formatMoney(price * quantity)} </span>
                 </p>
             </div>
 
