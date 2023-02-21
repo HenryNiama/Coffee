@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductCollection;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,9 +12,9 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): ProductCollection
     {
-        //
+        return new ProductCollection(Product::where('active', true)->orderBy('id', 'desc')->paginate(10));
     }
 
     /**
@@ -29,7 +30,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): Response
     {
-        //
+
     }
 
     /**
