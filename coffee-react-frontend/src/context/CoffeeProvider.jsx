@@ -62,7 +62,7 @@ const CoffeeProvider = ({children}) => {
 
     const getCategories = async () =>{
         try {
-            const {data} = await axios.get('http://localhost/api/categories');
+            const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/api/categories`);
             setCategories(data.data);
             setCurrentCategory(data.data[0]);
             // console.log(data.data);
