@@ -14,38 +14,38 @@ class ProductController extends Controller
      */
     public function index(): ProductCollection
     {
-        return new ProductCollection(Product::where('active', true)->orderBy('id', 'desc')->paginate(10));
+        return new ProductCollection(Product::where('active', true)->orderBy('id', 'desc')->get());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Response
-    {
-        //
-    }
+//    public function store(Request $request): Response
+//    {
+//        //
+//    }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product): Response
-    {
-
-    }
+//    public function show(Product $product): Response
+//    {
+//
+//    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product): Response
-    {
-        //
-    }
+//    public function update(Request $request, Product $product): Response
+//    {
+//        //
+//    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product): Response
-    {
-        //
-    }
+//    public function destroy(Product $product): Response
+//    {
+//        //
+//    }
 }
