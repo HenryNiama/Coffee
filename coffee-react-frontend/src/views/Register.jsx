@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {createRef, useState} from "react";
 import clientAxios from "../config/axios.js";
+import Alert from "../components/Alert.jsx";
 
 function Register() {
 
@@ -9,6 +10,8 @@ function Register() {
     const emailRef = createRef();
     const passwordRef = createRef();
     const password_confirmationRef = createRef();
+
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +27,8 @@ function Register() {
             const response = await clientAxios.post('/api/register', data);
             console.log(response);
         } catch (error) {
-            console.log(error);
+            console.log(Object.values(error.response.data.errors));
+            setErrors(Object.values(error.response.data.errors));
         }
     }
 
@@ -34,7 +38,10 @@ function Register() {
             <p className="text-lg text-gray-600"> Fill the form.</p>
 
             <div className="bg-white shadow-md rounded-md mt-6 px-5 py-6">
-                <form action="" onSubmit={handleSubmit}>
+                <form action="" onSubmit={handleSubmit} noValidate>
+
+                    {errors ? errors.map((error, i) => <Alert key={i}>{error}</Alert>) : null}
+
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">Name: </label>
                         <input type="text" name="name" id="name" placeholder="Your Name"
