@@ -40,23 +40,15 @@ class AuthController extends Controller
                 'errors' => ['Email or password is incorrect']
             ], 422);
 
-        $user = $request->user();
-
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-
-        $token->save();
+        $user = Auth::user();
 
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ]);
+            'message' => 'Successfully logged user!',
+            'token' => $user->createToken('my-app-token')->plainTextToken,
+            'user' => $user
+        ], 201);
+
+
     }
 
     public function logout(Request $request)
