@@ -5,11 +5,14 @@ import {formatMoney} from "../helpers";
 
 function Summary() {
 
-    const {order, total} = useCoffee();
+    const {order, total, handleSubmitNewOrder} = useCoffee();
 
     const verifyOrder = () => order.length === 0;
 
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleSubmitNewOrder();
+    }
 
     return (
         <aside className="w-72 h-screen  overflow-y-scroll p-5">
@@ -37,7 +40,7 @@ function Summary() {
             {/*</form>*/}
 
             <div className={"mt-5"}>
-                <form action="">
+                <form onSubmit={handleSubmit}>
                     <button type={"submit"} className={`${verifyOrder() ? 'bg-gray-400' : 'bg-gray-800'} text-white w-full py-3 mt-5 rounded-md font-bold`} disabled={verifyOrder()}>
                         Order
                     </button>

@@ -76,6 +76,22 @@ const CoffeeProvider = ({children}) => {
         getCategories().then(r => console.log(r));
     }, []);
 
+    const handleSubmitNewOrder = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+        try {
+            await clientAxios.post('/api/orders', {
+
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <CoffeeContext.Provider
             value={{
@@ -90,7 +106,8 @@ const CoffeeProvider = ({children}) => {
                 handleAddOrder,
                 handleEditQuantity,
                 handleDeleteProduct,
-                total
+                total,
+                handleSubmitNewOrder
             }}>
             {children}
         </CoffeeContext.Provider>
