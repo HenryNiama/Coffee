@@ -23,7 +23,7 @@ function Login() {
             password: passwordRef.current.value,
         }
         // console.log(data);
-        login(data, setErrors);
+        await login(data, setErrors);
     }
 
     return (
