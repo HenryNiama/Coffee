@@ -33,14 +33,12 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $request->validated();
-
-        $credentials = request(['email', 'password']);
+        $credentials = $request->validated();
 
         if (!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+                'errors' => ['Email or password is incorrect']
+            ], 422);
 
         $user = $request->user();
 
