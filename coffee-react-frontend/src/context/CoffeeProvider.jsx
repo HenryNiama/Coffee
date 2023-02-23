@@ -79,7 +79,7 @@ const CoffeeProvider = ({children}) => {
     const handleSubmitNewOrder = async () => {
         const token = localStorage.getItem('AUTH_TOKEN');
         try {
-            await clientAxios.post('/api/orders', {
+            const {data} = await clientAxios.post('/api/orders', {
                 total,
                 products: order.map(product => { return {product_id: product.id, quantity: product.quantity } })
 
@@ -88,6 +88,12 @@ const CoffeeProvider = ({children}) => {
                     Authorization: `Bearer ${token}`
                 }
             });
+
+            toast.success(data.message);
+
+            setTimeout(() => {
+                setOrder([]);
+            }, 1500);
 
         } catch (error) {
             console.log(error);

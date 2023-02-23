@@ -33,7 +33,7 @@ class OrderController extends Controller
         $order->products()->attach($request->products, ['created_at' => now(), 'updated_at' => now()]);
 
         return [
-            'message' => 'Order created successfully',
+            'message' => 'Order created successfully. Thank you for your purchase. We will contact you soon.',
         ];
     }
 
