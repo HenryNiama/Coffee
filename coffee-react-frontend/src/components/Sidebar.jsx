@@ -1,11 +1,12 @@
 import React from 'react';
 import useCoffee from "../hooks/useCoffee.js";
 import Category from "./Category.jsx";
-
+import {useAuth} from "../hooks/useAuth.js";
 
 function Sidebar() {
 
     const {categories} = useCoffee();
+    const {logout} = useAuth({middleware: 'auth'});
 
     return (
         <aside className={"md:w-72"}>
@@ -22,9 +23,9 @@ function Sidebar() {
             </div>
 
             <div className={"mt-10 px-5"}>
-                {/*<button type={"button"} className={"text-center bg-red-500 w-full p-3 font-bold text-white hover:bg-red-700"}>*/}
-                {/*    Cancel Order*/}
-                {/*</button>*/}
+                <button type={"button"} className={"text-center bg-red-500 w-full p-3 font-bold text-white hover:bg-red-700"} onClick={logout}>
+                    Cancel Order
+                </button>
                 <p className={"text-center"}>Developed by <span className={"font-bold"}>Henry Niama </span> <br/> {new Date().getFullYear() }</p>
             </div>
         </aside>
