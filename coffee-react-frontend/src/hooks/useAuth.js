@@ -34,11 +34,21 @@ export const useAuth = ({middleware, url}) => {
         }
     };
 
-    const register = ()=> {};
+    const register = async (data, setErrors)=> {
+        try {
+            const response = await clientAxios.post('/api/register', data);
+            localStorage.setItem('AUTH_TOKEN', response.data.token);
+            setErrors([]);
+            await mutate();
+            // console.log(response);
+        } catch (error) {
+            console.log(Object.values(error.response.data.errors));
+            setErrors(Object.values(error.response.data.errors));
+        }
+    };
+
 
     const logout = async ()=> {
-
-
 
         try {
             await clientAxios.post('/api/logout',null, {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {createRef, useState} from "react";
-import clientAxios from "../config/axios.js";
 import Alert from "../components/Alert.jsx";
+import {useAuth} from "../hooks/useAuth.js";
 
 function Register() {
 
@@ -12,6 +12,8 @@ function Register() {
     const password_confirmationRef = createRef();
 
     const [errors, setErrors] = useState([]);
+
+    const {register} = useAuth({middleware: 'guest', url: '/'});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,13 +25,7 @@ function Register() {
         }
         console.log(data);
 
-        try {
-            const response = await clientAxios.post('/api/register', data);
-            console.log(response);
-        } catch (error) {
-            console.log(Object.values(error.response.data.errors));
-            setErrors(Object.values(error.response.data.errors));
-        }
+        await register(data, setErrors);
     }
 
     return (
