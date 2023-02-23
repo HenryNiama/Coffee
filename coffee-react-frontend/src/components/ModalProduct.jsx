@@ -22,7 +22,7 @@ function ModalProduct() {
     return (
         <div className={"md:flex  gap-10"}>
             <div className={"md:w-1/3"}>
-                <img src={`/img/${product.imagen}.jpg`} alt={`Imagen Producto ${product.nombre}`}/>
+                <img src={`/img/${product.image}.jpg`} alt={`Imagen Producto ${product.name}`}/>
             </div>
             <div className={"md:w-2/3"}>
                 <div className={"flex justify-end"}>
@@ -33,8 +33,8 @@ function ModalProduct() {
                     </button>
                 </div>
 
-                <h1 className={"text-3xl font-bold"}>{product.nombre}</h1>
-                <p className={"text-5xl font-black text-amber-500 mt-5"}>{formatMoney(product.precio)}</p>
+                <h1 className={"text-3xl font-bold"}>{product.name}</h1>
+                <p className={"text-5xl font-black text-amber-500 mt-5"}>{formatMoney(product.price)}</p>
 
                 <p className={"text-lg mt-5"}>Choose the quantity:</p>
                 <div className={"flex gap-4 mt-5"}>

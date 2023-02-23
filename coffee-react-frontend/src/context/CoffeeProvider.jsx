@@ -30,7 +30,7 @@ const CoffeeProvider = ({children}) => {
 
     const[order, setOrder] = useState([]);
 
-    const handleAddOrder = ({categoria_id, ...product}) => {
+    const handleAddOrder = ({category_id, ...product}) => {
         if(order.some(order => order.id === product.id)){
             const productUpdated = order.map(orderState => orderState.id === product.id ? product : orderState);
             setOrder(productUpdated);
@@ -56,7 +56,7 @@ const CoffeeProvider = ({children}) => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        const newTotal = order.reduce((acc, product) => acc + product.precio * product.quantity, 0);
+        const newTotal = order.reduce((acc, product) => acc + product.price * product.quantity, 0);
         setTotal(newTotal);
     }, [order]);
 
@@ -80,7 +80,7 @@ const CoffeeProvider = ({children}) => {
         const token = localStorage.getItem('AUTH_TOKEN');
         try {
             await clientAxios.post('/api/orders', {
-
+                total
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
