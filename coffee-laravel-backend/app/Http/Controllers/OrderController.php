@@ -24,11 +24,13 @@ class OrderController extends Controller
     {
         $order = new Order();
 
-        $order->user_id = Auth::user()->id;
+        $order->user_id = Auth::id();
         $order->total = $request->total;
 
         $order->save();
-//        $order->products()->attach($request->products);
+
+//        //save the created_at and updated_at timestamp in the pivot table
+        $order->products()->attach($request->products, ['created_at' => now(), 'updated_at' => now()]);
 
         return [
             'message' => 'Order created successfully',

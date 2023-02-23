@@ -80,7 +80,9 @@ const CoffeeProvider = ({children}) => {
         const token = localStorage.getItem('AUTH_TOKEN');
         try {
             await clientAxios.post('/api/orders', {
-                total
+                total,
+                products: order.map(product => { return {product_id: product.id, quantity: product.quantity } })
+
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
