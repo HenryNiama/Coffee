@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -21,6 +22,14 @@ class OrderController extends Controller
      */
     public function store(Request $request): array
     {
+        $order = new Order();
+
+        $order->user_id = Auth::user()->id;
+        $order->total = $request->total;
+
+        $order->save();
+//        $order->products()->attach($request->products);
+
         return [
             'message' => 'Order created successfully',
         ];
