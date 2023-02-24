@@ -1,9 +1,12 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 import AdminSidebar from "../components/AdminSidebar.jsx";
-
+import {useAuth} from "../hooks/useAuth.js";
 
 function AdminLayout(props) {
+
+    useAuth({middleware: 'admin'});
+
     return (
         <div className="md:flex">
             <AdminSidebar />

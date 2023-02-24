@@ -27,7 +27,6 @@ function Inicio() {
                 <p className={"text-2xl my-5 text-center"}>Choose and customize your order.</p>
             </div>
 
-
             <div className={"grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10"}>
                 {productos.map((product) => (
                     <Product key={product.id} product={product} />

@@ -25,10 +25,8 @@ Modal.setAppElement("#root");
 export default function layout() {
 
     const {modal} = useCoffee();
-    const {user, error} = useAuth({middleware: 'auth'});
+    useAuth({middleware: 'auth'});
 
-    console.log(user);
-    console.log(error);
 
   return (
       <>
