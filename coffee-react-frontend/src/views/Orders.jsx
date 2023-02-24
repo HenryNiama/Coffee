@@ -19,12 +19,51 @@ function Orders(props) {
     console.log(error);
     console.log(isLoading);
 
+    if (isLoading) return (<p>Loading...</p>);
 
     return (
-        <div className={"w-3/5 px-1"}>
-            <h1 className={"text-4xl font-black text-center"}>Orders</h1>
-            <p className={"text-2xl my-5 text-center"}>Manage the orders right here.</p>
+
+        <div>
+            <div className={"w-3/5 px-1"}>
+                <h1 className={"text-4xl font-black text-center"}>Orders</h1>
+                <p className={"text-2xl my-5 text-center"}>Manage the orders right here.</p>
+            </div>
+
+            <div>
+                 <table className={"w-full text-center"}>
+                     <thead>
+                 <tr>
+                         <th className={"border px-4 py-2"}>ID</th>
+                         <th className={"border px-4 py-2"}>Customer</th>
+                         <th className={"border px-4 py-2"}>Total</th>
+                         <th className={"border px-4 py-2"}>Status</th>
+                         <th className={"border px-4 py-2"}>Date </th>
+                         <th className={"border px-4 py-2"}>Actions</th>
+                     </tr>
+                   </thead>
+                       <tbody>
+                  {data?.data.data.map((order) => (
+                        <tr key={order.id}>
+                            <td className={"border px-4 py-2"}>{order.id}</td>
+                            <td className={"border px-4 py-2"}>{order.user.name}</td>
+                            <td className={"border px-4 py-2"}>{order.total}</td>
+                            <td className={"border px-4 py-2"}>{order.status}</td>
+                            <td className={"border px-4 py-2"}>{order.created_at}</td>
+                            <td className={"border px-4 py-2"}>
+                                <button className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}>View</button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
+
+
+
+
+
+
     );
 }
 
