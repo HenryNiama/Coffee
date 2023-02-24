@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index(): OrderCollection
     {
-        return new OrderCollection(Order::with('user')->where('status', 0)->get());
+        return new OrderCollection(Order::with('user', 'products')->where('status', 0)->get());
     }
 
     /**
