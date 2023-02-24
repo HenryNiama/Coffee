@@ -61,9 +61,14 @@ const CoffeeProvider = ({children}) => {
     }, [order]);
 
     const getCategories = async () =>{
+        const token = localStorage.getItem('AUTH_TOKEN');
         try {
             // const {data} = await axios.get(`${}/api/categories`);
-            const {data} = await clientAxios.get('/api/categories');
+            const {data} = await clientAxios.get('/api/categories', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('AUTH_TOKEN')}`
+                }
+            });
             setCategories(data.data);
             setCurrentCategory(data.data[0]);
             // console.log(data.data);
@@ -100,6 +105,21 @@ const CoffeeProvider = ({children}) => {
         }
     }
 
+
+    const handleClickProductSoldOut = async id => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+        try {
+            await clientAxios.put(`/api/products/${id}`, null,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        }catch (error){
+            console.log(error);
+        }
+    };
+
+
     return (
         <CoffeeContext.Provider
             value={{
@@ -115,7 +135,8 @@ const CoffeeProvider = ({children}) => {
                 handleEditQuantity,
                 handleDeleteProduct,
                 total,
-                handleSubmitNewOrder
+                handleSubmitNewOrder,
+                handleClickProductSoldOut
             }}>
             {children}
         </CoffeeContext.Provider>

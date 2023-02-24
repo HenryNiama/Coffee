@@ -36,10 +36,15 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-//    public function update(Request $request, Product $product): Response
-//    {
-//        //
-//    }
+    public function update(Request $request, Product $product): array
+    {
+        $product->active = 0;
+        $product->save();
+
+        return [
+            'product' => $product,
+        ];
+    }
 
     /**
      * Remove the specified resource from storage.

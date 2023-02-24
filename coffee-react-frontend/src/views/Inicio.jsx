@@ -10,7 +10,12 @@ function Inicio() {
     const {currentCategory} = useCoffee();
 
     // Consulta SWR
-    const fetcher = () => clientAxios('/api/products').then(data => data.data);
+    const token = localStorage.getItem('AUTH_TOKEN');
+    const fetcher = () => clientAxios('/api/products', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(data => data.data);
     const { data, error, isLoading } = useSWR('/api/products', fetcher, {
         refreshInterval: 1000
     });
@@ -29,7 +34,7 @@ function Inicio() {
 
             <div className={"grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10"}>
                 {productos.map((product) => (
-                    <Product key={product.id} product={product} />
+                    <Product key={product.id} product={product}  buttonAdd={true}/>
                 ))}
             </div>
         </>
