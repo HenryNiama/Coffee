@@ -15,7 +15,7 @@ function Orders(props) {
 
     const {data, error, isLoading} = useSWR('/api/orders', fetcher);
 
-    console.log(data);
+    console.log(data?.data);
     console.log(error);
     console.log(isLoading);
 

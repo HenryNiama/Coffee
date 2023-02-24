@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderCollection;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -12,9 +13,9 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): OrderCollection
     {
-        //
+        return new OrderCollection(Order::with('user')->where('status', 0)->get());
     }
 
     /**
